@@ -1,0 +1,15 @@
+services:
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: "dev"
+    restart: unless-stopped
+    container_name: ${BACKEND_CONTAINER_NAME}
+    hostname: ${BACKEND_HOST_NAME}
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - "${BACKEND_EXPOSE_PORT}:${BACKEND_PORT}"
